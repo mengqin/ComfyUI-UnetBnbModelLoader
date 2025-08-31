@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-unetbnbmodelloader"
+description = "Unet Bnb Model Loader"
+version = "2.0.0" # 2.0.0 = GitHub main, 1.X.X = ComfyUI Registry
+license = { file = "LICENSE" }
+dependencies = ["bitsandbytes>=0.45.3"]
+
+[project.urls]
+Repository = "https://github.com/mengqin/ComfyUI-UnetBnbModelLoader"
+
+[tool.comfy]
+PublisherId = "mengqin"
+DisplayName = "ComfyUI-UnetBnbModelLoader"
+Icon = ""

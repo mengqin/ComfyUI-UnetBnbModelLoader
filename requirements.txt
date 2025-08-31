@@ -1,0 +1,2 @@
+# main
+bitsandbytes>=0.45.3
