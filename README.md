@@ -59,6 +59,7 @@ Supported model files:
 - [HiDream-I1-Full-nf4](https://huggingface.co/azaneko/HiDream-I1-Full-nf4)
 - [HiDream-I1-Dev-nf4](https://huggingface.co/azaneko/HiDream-I1-Dev-nf4)
 - [qwen-image-4bit](https://huggingface.co/ovedrive/qwen-image-4bit)
+- [qwen-image-edit-4bit](https://huggingface.co/ovedrive/qwen-image-edit-4bit)
 
 Some models are converted without first being converted to diffusers models. Instead, BNB 4-bit quantization is performed directly on the original model. This will cause comfyui to fail to correctly perform mmdit conversion before loading these models. This is because they cannot recognize and correctly handle the newly added quantized vector format of BNB 4-bit.
 
