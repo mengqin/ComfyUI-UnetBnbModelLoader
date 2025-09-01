@@ -27,6 +27,8 @@ Features of this plugin:
 > [!IMPORTANT]  
 > Make sure your ComfyUI is on a recent-enough version to support custom ops when loading the UNET-only.
 
+You may search and install this plugin directly in ComfyUI Manager's plugin management. Or you may install it manually as follows:
+
 To install the custom node normally, git clone this repository into your custom nodes folder (`ComfyUI/custom_nodes`) and install the only dependency for inference (`pip install --upgrade bitsandbytes`)
 
 ```
