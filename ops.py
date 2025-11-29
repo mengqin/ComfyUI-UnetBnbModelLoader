@@ -93,7 +93,7 @@ class LazyOps(comfy.ops.manual_cast):
 
             if getattr(self, "is_bnb_quantized", lambda : False)():                
                 if not patches_for_this_layer:
-                    bias = self.bias.to(x.dtype) if self.bias is not None else None
+                    bias = self.bias.to(device=x.device, dtype=x.dtype) if self.bias is not None else None
                     return bnb.matmul_4bit(
                         x, self.weight.t(), bias=bias, quant_state=getattr(self.weight, "quant_state", None)
                     ).to(x.dtype)
@@ -112,13 +112,13 @@ class LazyOps(comfy.ops.manual_cast):
                         weight_final_fp32 = None
                 
                 if weight_final_fp32 is None:
-                    bias = self.bias.to(x.dtype) if self.bias is not None else None
+                    bias = self.bias.to(device=x.device, dtype=x.dtype) if self.bias is not None else None
                     return bnb.matmul_4bit(
                         x, self.weight.t(), bias=bias, quant_state=getattr(self.weight, "quant_state", None)
                     ).to(x.dtype)
                 
                 weight_final = comfy.float.stochastic_rounding(weight_final_fp32, x.dtype)
-                bias = self.bias.to(x.dtype) if self.bias is not None else None
+                bias = self.bias.to(device=x.device, dtype=x.dtype) if self.bias is not None else None
                 return F.linear(x, weight_final.to(x.dtype), bias)
             
             elif getattr(self, "is_fp8_scaled", False):
@@ -150,14 +150,14 @@ class LazyOps(comfy.ops.manual_cast):
                     weight_final_fp32 = base_weight_dequant
 
                 weight_final = comfy.float.stochastic_rounding(weight_final_fp32, x.dtype)
-                bias = self.bias.to(x.dtype) if self.bias is not None else None
+                bias = self.bias.to(device=x.device, dtype=x.dtype) if self.bias is not None else None
                 return F.linear(x, weight_final.to(x.dtype), bias)
             
             else:                
                 try:
                     return super().forward(x)
                 except Exception:                    
-                    bias = self.bias.to(x.dtype) if self.bias is not None else None
+                    bias = self.bias.to(device=x.device, dtype=x.dtype) if self.bias is not None else None
                     return F.linear(x, self.weight.to(x.dtype), bias)
     
     class Conv2d(comfy.ops.manual_cast.Conv2d): pass
