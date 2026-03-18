@@ -42,7 +42,7 @@ git clone https://github.com/mengqin/ComfyUI-UnetBnbModelLoader ComfyUI/custom_n
 .\python_embeded\python.exe -s -m pip install -r .\ComfyUI\custom_nodes\ComfyUI-UnetBnbModelLoader\requirements.txt
 ```
 
-Because this plugin relies on bitsandbytes, we are unable to support macOS and AMD GPUs.
+Because this plugin relies on bitsandbytes, we are unable to support macOS.
 
 ## Usage
 
